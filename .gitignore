@@ -1,0 +1,9 @@
+# Put all latex compiler generated files here
+*.aux
+*.bbl
+*.blg
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdf
