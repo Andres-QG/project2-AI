@@ -51,20 +51,30 @@ Introduce el problema de clasificación binaria y su importancia en Machine Lear
 \subsection{Objective}
 Explica los objetivos específicos del proyecto, como la comparación de algoritmos y el análisis de datasets.
 
-\subsection{Contributions}
-Resalta las contribuciones principales del paper, como el análisis comparativo y las conclusiones obtenidas.
-
 \section{Methodology}
 
 \subsection{Datasets}
+The project utilized two datasets to explore binary classification problems:
+
+1. Red Wine Quality Dataset
+The Wine Quality dataset includes 11 features of the physicochemical properties of red wine samples, taken from the UCI Machine Learning Repository (Cortez et al., 2009). These wines vary in alcohol content, acidity, and levels of sulfur dioxide, among other characteristics. The variable of interest, in this case, is wine quality, rated on a continuous scale between 3 and 8. For the purpose of this project, the ratings have been split into two clear-cut classes: "low quality" (3–5) and "high quality" (6–8), making a binary classification problem. This above-mentioned dataset contains more than 1,500 entries, which makes it very suitable for testing various classifiers. 
+
+2. Mushroom Dataset
+The Mushroom dataset, by Prisha Sawhney 2024, is used to classify mushrooms as either edible or poisonous.
+Some of the features in this dataset include cap shape, odour, and spore print color, to name a few. These collectively provide great insight into the mushrooms. The target variable is binary, where it tells whether the mushroom is edible or toxic. This dataset contains thousands of rows of data, which will be a great benchmark to examine the generalization capability of machine learning models in a different domain. 
+
+This two datasets were chosen for the diversity of their attributes, a unique binary classification structure, and adequate size to enable efficient experimentation and analysis of different machine learning algorithms.
 
 \subsection{Data Preprocessing}
 
 \subsection{Feature selection}
+Feature selection was purposely done before training to make the models more efficient and, if possible, improve their effectiveness. By only focusing on the most relevant features, the models have managed to elude useless information, therefore improving interpretability and at the same time keeping good predictive accuracy. It was an informed process based on the unique characteristics of each dataset, making sure that it included only those variables that contributed substantially to classification. In cases where features were believed to be redundant, all features were preserved to avoid losing potentially important information. This systematic approach made sure that the feature selection process supported the experiments without introducing inappropriate constraints.
 
 \subsection{Machine Learning Algorithms}
 \subsubsection{Logistic Regression}
 \subsubsection{Decision Trees}
+Decision Trees are among the most widely used machine learning algorithms for classification tasks due to their interpretability, simplicity, and ease in capturing non-linear relationships in data. The algorithm partitions the data into subsets based on the decision rules derived from the input features and builds a tree-like structure. They are quite effective but susceptible to over-fitting, which might be eased by techniques such as either limiting tree depth or pruning. This work used Decision Trees to determine their effectiveness on classification and also to explore the importance of some features in the data sets.
+
 \subsubsection{k-Nearest Neighbors}
 \subsubsection{Neural Networks}
 
