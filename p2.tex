@@ -88,7 +88,21 @@ Decision Trees are among the most widely used machine learning algorithms for cl
 \subsection{Red Wine Quality Dataset}
 \subsubsection{Logistic Regression}
 \subsubsection{Decision Trees}
-The results from applying a Decision Tree model to the Wine Quality dataset highlight key aspects of the classification problem and the model's performance. Utilizing a refined feature set derived from the initial physicochemical attributes, and optimizing hyperparameters via GridSearchCV, the results reveal valuable insights into both the model's predictive capacity and the relationships between features and target labels.
+The Decision Tree model applied to the Wine Quality dataset effectively highlights the most important features contributing to the prediction of wine quality. In this respect, feature importance refers to how much a particular feature contributes to reducing the impurity of the splits in the Decision Tree. This measure provides a quantitative evaluation of the importance of each physicochemical characteristic in the classification of wine quality.
+
+\begin{figure}[h]
+    \includegraphics[width=\columnwidth]{plots/dt_wine_feature_importance.png}
+
+  \caption{Feature Importance for Decision Tree Model on Wine Quality Dataset}
+
+  \label{fig:dt_feature_importance_wine}
+
+\end{figure}
+
+
+As Figure \ref{fig:dt_feature_importance_wine} suggests, alcohol is the most important feature for the Decision Tree model, which indicates its highest position in distinguishing between different grades of quality. Other notable features include total sulfur dioxide, sulfates, and volatile acidity, all of which are significant contributors to the model's classification mechanism.
+
+This refinement of the Decision Tree for better efficacy was done using optimization of hyperparameters with GridSearchCV in conjunction with feature subset selection according to their importance. It reduced the complexity of the tree by focusing on those features that were crucial for prediction and reduced the likelihood of overfitting. This refined approach allowed a balanced predictive accuracy with model interpretability, providing valuable insights into how different physicochemical properties influence wine quality classification.
 
 \begin{table}[h]
   \centering
