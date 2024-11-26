@@ -87,54 +87,48 @@ Decision Trees are among the most widely used machine learning algorithms for cl
 \section{Results and Discussion}
 \subsection{Red Wine Quality Dataset}
 \subsubsection{Logistic Regression}
-\subsubsection{Decision Trees}
-The Decision Tree model applied to the Wine Quality dataset effectively highlights the most important features contributing to the prediction of wine quality. In this respect, feature importance refers to how much a particular feature contributes to reducing the impurity of the splits in the Decision Tree. This measure provides a quantitative evaluation of the importance of each physicochemical characteristic in the classification of wine quality.
+\subsubsection{Decision Trees} The Decision Tree model applied to the Wine Quality dataset underlines effectively, for wine quality prediction, the most influential features. In this respect, feature importance stands for the impurity reduction of the created splits by the Decision Tree for a given feature. It provides a quantitative view about the importance of each physicochemical characteristic in the classification of wine quality.
 
-\begin{figure}[h]
-    \includegraphics[width=\columnwidth]{plots/dt_wine_feature_importance.png}
+\begin{figure}[h] \includegraphics[width=\columnwidth]{plots/dt_wine_feature_importance.png} \caption{Feature Importance for Decision Tree Model on Wine Quality Dataset} \label{fig:dt_feature_importance_wine} \end{figure}
 
-  \caption{Feature Importance for Decision Tree Model on Wine Quality Dataset}
+Therefore, according to Figure \ref{fig:dt_feature_importance_wine} the feature importance analysis for the Decision Tree model on Wine Quality Dataset shows that alcohol is the most important feature, hence a major divisor for the model to distinguish between different grades of quality. Some other important features include total sulfur dioxide, sulfates, and volatile acidity, which most in feature importance contribute to the model's classification mechanism.
 
-  \label{fig:dt_feature_importance_wine}
+\textbf{Optimization and Hyperparameter Selection}:
+The structure of the Decision Tree was optimized using a systematic GridSearch approach in order to find the set of the best performing hyperparameters. The selected hyperparameters were the following:
 
-\end{figure}
+\textbf{Criterion:} Entropy
+\textbf{Maximum Depth:} 10
+\textbf{Minimum Samples per Leaf:} 32
+\textbf{Minimum Samples to Split:} 92
 
-
-As Figure \ref{fig:dt_feature_importance_wine} suggests, alcohol is the most important feature for the Decision Tree model, which indicates its highest position in distinguishing between different grades of quality. Other notable features include total sulfur dioxide, sulfates, and volatile acidity, all of which are significant contributors to the model's classification mechanism.
-
-This refinement of the Decision Tree for better efficacy was done using optimization of hyperparameters with GridSearchCV in conjunction with feature subset selection according to their importance. It reduced the complexity of the tree by focusing on those features that were crucial for prediction and reduced the likelihood of overfitting. This refined approach allowed a balanced predictive accuracy with model interpretability, providing valuable insights into how different physicochemical properties influence wine quality classification.
+Hence, hyperparameter tuning had to be carried out with the goal of minimum overfitting for maximum generality. Optimization was accordingly extended to 5-fold cross-validation with the intention of making the evaluation performance of the model robust and repeatable. Feature pruning is adopted by choosing some impactful features like alcohol, total sulfur dioxide, and volatile acidity, based on their Gini importance according to impurity reduction. This yields a simpler interpretable model with no loss in predictive accuracy.
 
 \begin{table}[h]
-  \centering
-  \caption{Performance Metrics for Decision Tree Model on Wine Quality Dataset}
-  \label{tab:dt_wine}
-  \begin{tabular}{|l|c|c|}
-  \hline
-  \textbf{Metric}         & \textbf{Train Mean} & \textbf{Test Mean} \\ \hline
-  Accuracy                & 0.771               & 0.738              \\ \hline
-  Precision               & 0.789               & 0.766              \\ \hline
-  Recall                  & 0.780               & 0.737              \\ \hline
-  AUC                     & 0.854               & 0.801              \\ \hline
-  \end{tabular}
-  \end{table}
+\centering
+\caption{Performance Metrics for Decision Tree Model on Wine Quality Dataset}
+\label{tab:dt_wine}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Metric} & \textbf{Train Mean} & \textbf{Test Mean} \\
+\hline
+Accuracy & 0.771 & 0.738 \\
+\hline
+Precision & 0.789 & 0.765 \\
+\hline
+Recall & 0.780 & 0.737 \\
+\hline
+AUC & 0.854 & 0.801 \\
+\hline
+\end{tabular}
+\end{table}
 
-  \begin{figure}[h]
-    \centering
-    \includegraphics[width=\columnwidth]{plots/dt_wine_ROC_curves.png}
-    \caption{ROC Curves for Decision Tree Model on Wine Quality Dataset}
-    \label{fig:dt_roc_wine}
-  \end{figure}
+\begin{figure}[h] \centering \includegraphics[width=\columnwidth]{plots/dt_wine_ROC_curves.png} \caption{ROC Curves for Decision Tree Model on Wine Quality Dataset} \label{fig:dt_roc_wine} \end{figure}
 
+Table \ref{tab:dt_wine} demonstrates that the model achieved a testing accuracy of 73.8\%, complemented by a mean AUC of 0.801, indicating robust overall performance. This conclusion is further supported by Figure \ref{fig:dt_roc_wine}, which highlights the ROC curves across cross-validation folds. These curves consistently exhibit high discriminatory power, with a mean AUC of 0.80, aligning with the earlier result of 76.5\% precision. The Decision Tree's ability to effectively balance true positives and false positives is reinforced by the graphical representation, where the ROC curves display minimal variation across folds, confirming consistent performance around the mean.
 
-On Table \ref{tab:dt_wine}, the Decision Tree model's metrics, including an accuracy of 73.8\% and an AUC score of 0.801, highlight its capacity to predict wine quality effectively. These results demonstrate the model's ability to capture nonlinear relationships between features, leveraging key attributes such as "alcohol" and "sulphates" to classify wine quality. The high AUC further supports the model’s strong discrimination between "high" and "low" quality classes, as evident in the ROC curves (Figure \ref{fig:dt_roc_wine}).
+Moreover, the "mean cross-validation accuracy" of the dataset was 73.04\%, which speaks to the stability in predictive performance across all splits. That would align with the ability of the Decision Tree to generalize well on unseen data with a reliance on features like alcohol and sulfur dioxide driving predictive outcomes. Also, the Decision Tree model has higher accuracy on the training set compared to the test set, which hints at overfitting. The overfitting isn't high enough to confirm that the model is too reliant on the training data, which is a good indication. This was the common problem with Decision Trees, and there were some reduction methods, like pruning or just limiting the depth of the tree.
 
-Figure \ref{fig:dt_roc_wine} depicts the ROC curves across five cross-validation folds, showcasing a consistent mean AUC of 0.80, with individual folds ranging from 0.77 to 0.84. This stability reflects the model's balance in sensitivity and specificity, maintaining reliable predictions across data splits. The black mean ROC curve, significantly above the random classifier line, underscores the tree's ability to identify predictive patterns. However, the smoothness of the curves suggests that the reliance on discrete thresholds might limit the representation of more complex or subtle feature interactions near decision boundaries. This highlights both the strengths and inherent constraints of the Decision Tree's splitting mechanism.
-
-The focus on "alcohol," "total sulfur dioxide," and "sulphates" in the model is a deliberate selection of features that are not only considered important by the splitting criterion of the Decision Tree but had been previously selected in order to artificially increase the predictive power of the model. Focusing on these main predictors, the Decision Tree is particularly good at leveraging simple, information-packed features to construct clear thresholds of distinction between different levels of wine quality. This is in line with the intrinsic capability of this algorithm to handle large, direct relationships.
-
-Less important features such as "residual sugar" not being part of the dataset upon analysis will result in results that are intrinsically affected by an absence of features that may have more subtle or conditional effects. Refining the feature set also allows the model to focus on the most relevant traits while at the same time reducing the potential for noise or overfitting. With this improvement, the algorithm still relies on single-feature splits and thus might not take into consideration complex relationships among those features that were selected-for instance, how "alcohol" and "sulphates" together may influence wine quality. The results do, however, illustrate that the features chosen provided sufficient information to create strong, interpretable splits within the tree.
-
-The algorithm further showed a precision of 76.5\% and recall of 73.7\%, showing its ability in balancing true positive rates against the reduction of false positives. Such results are due to the tree's ability to readjust its structure according to data while still being bounded by predefined hyperparameters, such as the maximum depth and minimum samples per leaf. Decision Trees fundamentally concentrate on enhancing splits based on predominant patterns present in the data, which may result in robust overall performance; however, this can also lead to sporadic misclassification of outlier cases or minority patterns. It could be that an acceptable recall rate of 73.7\% indicates problems with intersecting feature distributions. For example, "volatile acidity" may have similar ranges for both "high" and "low" quality wines, which would lead to misclassifications. Overlapping boundaries may reduce the ability of the decision tree to easily 'draw a line' around the classes, especially with those wines that fall into more borderline quality categories, such as 5 and 6.
+However, despite these strengths, the decision tree is limited in its tendency toward underfitting complex relationships due to focusing on one single feature at every split. For example, "volatile acidity" and "citric acid," although important, may have interactions that univariate splits would fail to notice. This limits the indication that while Decision Trees are well-mannered in terms of interpretability, they lack the required subtlety for datasets entailing complex feature interdependencies. Which can explain the model's performance, that is good but not excellent.
 
 \subsubsection{k-Nearest Neighbors}
 \subsubsection{Neural Networks}
